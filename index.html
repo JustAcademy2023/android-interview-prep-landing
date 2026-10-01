@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Android Developer Interview Questions for Freshers and Experienced Developers</title>
+<meta name="description" content="Flip-card Android interview questions for freshers and experienced developers, plus Android, iOS, Flutter and React Native courses and career blogs from JustAcademy.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@600;800&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{--paper:#ECE7FF;--ink:#1B1535;--lime:#3DDC84;--coral:#FF5C7A;--sun:#FFD23F;--sky:#5BC8FF;--white:#fff}
+*{box-sizing:border-box;margin:0}
+html{scroll-behavior:smooth}
+body{font-family:"DM Sans",system-ui,sans-serif;background:var(--paper);color:var(--ink);line-height:1.6;background-image:radial-gradient(var(--ink) 1px,transparent 1px);background-size:26px 26px;background-attachment:fixed}
+h1,h2,h3{font-family:"Bricolage Grotesque","Trebuchet MS",sans-serif;line-height:1.05;letter-spacing:-.02em}
+a{color:inherit}
+:focus-visible{outline:4px solid var(--coral);outline-offset:3px}
+.wrap{max-width:1120px;margin:0 auto;padding:0 20px}
+.box{border:3px solid var(--ink);box-shadow:6px 6px 0 var(--ink);background:var(--white)}
+.btn{display:inline-block;padding:14px 24px;border:3px solid var(--ink);border-radius:999px;font-weight:700;text-decoration:none;background:var(--lime);box-shadow:4px 4px 0 var(--ink);transition:transform .12s,box-shadow .12s}
+.btn:hover{transform:translate(3px,3px);box-shadow:1px 1px 0 var(--ink)}
+.btn.alt{background:var(--sun)}
+/* header */
+header{position:sticky;top:0;z-index:20;background:var(--sun);border-bottom:3px solid var(--ink)}
+.bar{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:12px 20px;max-width:1120px;margin:0 auto;flex-wrap:wrap}
+.logo{font-family:"Bricolage Grotesque",sans-serif;font-weight:800;font-size:1.25rem;text-decoration:none;display:flex;align-items:center;gap:8px}
+.logo i{width:30px;height:30px;background:var(--lime);border:3px solid var(--ink);border-radius:50% 50% 8px 8px;display:inline-block}
+nav{display:flex;gap:6px;flex-wrap:wrap}
+nav a{text-decoration:none;font-weight:700;padding:6px 14px;border-radius:999px;border:2px solid transparent}
+nav a:hover{border-color:var(--ink);background:var(--white)}
+/* hero */
+.hero{padding:64px 0 40px;display:grid;grid-template-columns:1.2fr .8fr;gap:40px;align-items:center}
+.hero h1{font-size:clamp(2.6rem,7vw,5.2rem);font-weight:800}
+.hero h1 span{display:inline-block;background:var(--lime);border:3px solid var(--ink);padding:0 14px;border-radius:14px;transform:rotate(-2deg);box-shadow:5px 5px 0 var(--ink)}
+.hero p{font-size:1.15rem;max-width:52ch;margin:22px 0 28px}
+.cta{display:flex;gap:14px;flex-wrap:wrap}
+.phone{justify-self:center;width:250px;height:420px;border-radius:34px;padding:14px;background:var(--ink);transform:rotate(4deg);box-shadow:10px 10px 0 var(--coral)}
+.screen{height:100%;border-radius:22px;background:var(--lime);padding:18px;display:flex;flex-direction:column;gap:12px;font-weight:700;overflow:hidden}
+.bubble{background:var(--white);border:3px solid var(--ink);border-radius:16px 16px 16px 4px;padding:10px 12px;font-size:.88rem}
+.bubble.me{align-self:flex-end;background:var(--sun);border-radius:16px 16px 4px 16px}
+.cursor{animation:blink 1s steps(2) infinite}
+@keyframes blink{50%{opacity:0}}
+/* marquee */
+.ticker{background:var(--ink);color:var(--sun);border-block:3px solid var(--ink);overflow:hidden;white-space:nowrap;font-family:"Bricolage Grotesque",sans-serif;font-weight:800;font-size:1.3rem;padding:12px 0}
+.ticker div{display:inline-block;animation:slide 28s linear infinite}
+@keyframes slide{to{transform:translateX(-50%)}}
+/* sections */
+section{padding:72px 0 8px}
+.head{margin-bottom:30px;max-width:640px}
+.head h2{font-size:clamp(2rem,5vw,3.2rem)}
+.head p{margin-top:10px}
+.grid{display:grid;gap:26px;grid-template-columns:repeat(auto-fit,minmax(250px,1fr))}
+/* level tabs */
+.tabs{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:26px}
+.tabs button{font:inherit;font-weight:700;padding:10px 20px;border:3px solid var(--ink);border-radius:12px;background:var(--white);cursor:pointer;box-shadow:3px 3px 0 var(--ink)}
+.tabs button[aria-pressed=true]{background:var(--coral);color:var(--white);transform:translate(2px,2px);box-shadow:1px 1px 0 var(--ink)}
+/* flip cards */
+.flip{perspective:1000px;min-height:230px;border:0;background:none;padding:0;font:inherit;text-align:left;cursor:pointer;color:inherit}
+.flip[hidden]{display:none}
+.inner{position:relative;width:100%;height:100%;min-height:230px;transition:transform .55s;transform-style:preserve-3d}
+.flip[aria-pressed=true] .inner{transform:rotateY(180deg)}
+.face{position:absolute;inset:0;backface-visibility:hidden;border:3px solid var(--ink);border-radius:20px 20px 20px 4px;box-shadow:6px 6px 0 var(--ink);padding:22px;display:flex;flex-direction:column;justify-content:space-between;gap:10px}
+.front{background:var(--white)}
+.back{background:var(--sky);transform:rotateY(180deg);border-radius:20px 20px 4px 20px;font-size:.97rem}
+.tag{align-self:flex-start;font-size:.8rem;font-weight:700;padding:2px 12px;border:2px solid var(--ink);border-radius:999px;background:var(--sun)}
+.face h3{font-size:1.3rem}
+.hint{font-size:.85rem;font-weight:700;opacity:.7}
+/* link cards */
+.card{display:flex;flex-direction:column;justify-content:space-between;gap:16px;padding:24px;text-decoration:none;border-radius:6px 26px 6px 26px;transition:transform .15s}
+.card:hover{transform:rotate(-1.5deg) translateY(-4px)}
+.card h3{font-size:1.35rem}
+.card .go{font-weight:700;text-decoration:underline;text-decoration-thickness:3px}
+.c1{background:var(--lime)}.c2{background:var(--sky)}.c3{background:var(--sun)}.c4{background:var(--coral);color:var(--white)}
+.blog{background:var(--white);border-radius:26px 6px 26px 6px}
+.blog.feat{grid-column:1/-1;background:var(--sun);display:grid;gap:8px}
+.blog.feat h3{font-size:clamp(1.5rem,3.5vw,2.3rem)}
+/* footer */
+.banner{margin:80px 0 0;padding:44px 28px;text-align:center;background:var(--coral);color:var(--white);border-radius:30px}
+.banner h2{font-size:clamp(1.8rem,5vw,3rem);margin-bottom:18px}
+footer{margin-top:80px;background:var(--ink);color:var(--paper);padding:44px 0 28px}
+.foot{display:grid;gap:30px;grid-template-columns:repeat(auto-fit,minmax(200px,1fr))}
+footer h3{color:var(--sun);font-size:1.1rem;margin-bottom:10px}
+footer a{display:block;text-decoration:none;padding:3px 0;opacity:.9}
+footer a:hover{color:var(--lime);text-decoration:underline}
+.copy{margin-top:30px;padding-top:18px;border-top:2px dashed #5b5380;font-size:.88rem;opacity:.8}
+@media(max-width:820px){.hero{grid-template-columns:1fr;padding-top:40px}.phone{transform:rotate(2deg);width:220px;height:370px}}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="bar">
+    <a class="logo" href="#top"><i></i>Interview Arcade</a>
+    <nav aria-label="Main">
+      <a href="#deck">Question deck</a>
+      <a href="#courses">Courses</a>
+      <a href="#blogs">Blogs</a>
+    </nav>
+  </div>
+</header>
+
+<main id="top">
+<div class="wrap hero">
+  <div>
+    <h1>Walk into your <span>Android</span> interview ready.</h1>
+    <p>Flip real interview questions, check your answers, and follow the learning paths that help freshers and experienced developers land the job.</p>
+    <div class="cta">
+      <a class="btn" href="#deck">Start flipping</a>
+      <a class="btn alt" href="https://www.justacademy.co/blog-detail/android-developer-interview-questions-for-freshers-and-experienced-developers" target="_blank" rel="noopener">Read the full guide</a>
+    </div>
+  </div>
+  <div class="phone" aria-hidden="true">
+    <div class="screen">
+      <div class="bubble">What is the Activity lifecycle?</div>
+      <div class="bubble me">onCreate, onStart, onResume...<span class="cursor">|</span></div>
+      <div class="bubble">And when does onSaveInstanceState run?</div>
+      <div class="bubble me">Before the system may kill the app!</div>
+    </div>
+  </div>
+</div>
+
+<div class="ticker" aria-hidden="true"><div>Kotlin &nbsp;★&nbsp; Jetpack Compose &nbsp;★&nbsp; Coroutines &nbsp;★&nbsp; MVVM &nbsp;★&nbsp; Room &nbsp;★&nbsp; Hilt &nbsp;★&nbsp; Flow &nbsp;★&nbsp; WorkManager &nbsp;★&nbsp; Kotlin &nbsp;★&nbsp; Jetpack Compose &nbsp;★&nbsp; Coroutines &nbsp;★&nbsp; MVVM &nbsp;★&nbsp; Room &nbsp;★&nbsp; Hilt &nbsp;★&nbsp; Flow &nbsp;★&nbsp; WorkManager &nbsp;★&nbsp;</div></div>
+
+<section id="deck" class="wrap">
+  <div class="head">
+    <h2>Pick your level, flip a card</h2>
+    <p>Tap a card to see a short answer. Say it out loud before you flip.</p>
+  </div>
+  <div class="tabs" role="group" aria-label="Choose level">
+    <button type="button" data-level="all" aria-pressed="true">All</button>
+    <button type="button" data-level="fresher" aria-pressed="false">Freshers</button>
+    <button type="button" data-level="pro" aria-pressed="false">Experienced</button>
+  </div>
+  <div class="grid" id="cards">
+    <button class="flip" data-level="fresher" aria-pressed="false"><div class="inner"><div class="face front"><span class="tag">Fresher</span><h3>What are the main Android app components?</h3><span class="hint">Tap to flip</span></div><div class="face back"><p>Activities, Services, Broadcast Receivers and Content Providers. Each is declared in the manifest and has its own lifecycle and purpose.</p></div></div></button>
+    <button class="flip" data-level="fresher" aria-pressed="false"><div class="inner"><div class="face front"><span class="tag">Fresher</span><h3>Activity vs Fragment: what is the difference?</h3><span class="hint">Tap to flip</span></div><div class="face back"><p>An Activity is a full screen entry point. A Fragment is a reusable UI piece hosted inside an Activity, with its own lifecycle and view.</p></div></div></button>
+    <button class="flip" data-level="fresher" aria-pressed="false"><div class="inner"><div class="face front"><span class="tag">Fresher</span><h3>What is an Intent?</h3><span class="hint">Tap to flip</span></div><div class="face back"><p>A message object used to start components and pass data. Explicit intents name the target; implicit intents describe an action for the system to resolve.</p></div></div></button>
+    <button class="flip" data-level="pro" aria-pressed="false"><div class="inner"><div class="face front"><span class="tag">Experienced</span><h3>How do Kotlin coroutines avoid blocking the main thread?</h3><span class="hint">Tap to flip</span></div><div class="face back"><p>They suspend instead of block, resuming on a dispatcher. Use viewModelScope, Dispatchers.IO for work, and structured concurrency for cancellation.</p></div></div></button>
+    <button class="flip" data-level="pro" aria-pressed="false"><div class="inner"><div class="face front"><span class="tag">Experienced</span><h3>Why choose MVVM with a ViewModel?</h3><span class="hint">Tap to flip</span></div><div class="face back"><p>It separates UI from logic, survives configuration changes, and exposes state through StateFlow or LiveData, which makes screens easier to test.</p></div></div></button>
+    <button class="flip" data-level="pro" aria-pressed="false"><div class="inner"><div class="face front"><span class="tag">Experienced</span><h3>How would you find and fix a memory leak?</h3><span class="hint">Tap to flip</span></div><div class="face back"><p>Profile with Android Studio Profiler and LeakCanary. Typical causes are static Context references, unregistered listeners and long-lived coroutines.</p></div></div></button>
+  </div>
+</section>
+
+<section id="courses" class="wrap">
+  <div class="head">
+    <h2>Level up with a course</h2>
+    <p>Hands-on training in Mumbai. Choose the path that fits your goal.</p>
+  </div>
+  <div class="grid">
+    <a class="box card c1" href="https://www.justacademy.co/course-detail/mumbai/android-app-development-in-mumbai" target="_blank" rel="noopener"><h3>Android App Development</h3><p>Build real apps with Kotlin and Jetpack.</p><span class="go">View course</span></a>
+    <a class="box card c2" href="https://www.justacademy.co/course-detail/mumbai/ios-training-in-mumbai" target="_blank" rel="noopener"><h3>iOS Training</h3><p>Swift and Apple platform fundamentals.</p><span class="go">View course</span></a>
+    <a class="box card c3" href="https://www.justacademy.co/course-detail/mumbai/flutter-training-in-mumbai" target="_blank" rel="noopener"><h3>Flutter Training</h3><p>One Dart codebase for Android and iOS.</p><span class="go">View course</span></a>
+    <a class="box card c4" href="https://www.justacademy.co/course-detail/mumbai/react-native-training-in-mumbai" target="_blank" rel="noopener"><h3>React Native Training</h3><p>Ship cross-platform apps with JavaScript.</p><span class="go">View course</span></a>
+  </div>
+</section>
+
+<section id="blogs" class="wrap">
+  <div class="head">
+    <h2>Read before you interview</h2>
+    <p>Guides, roadmaps and career advice for mobile developers.</p>
+  </div>
+  <div class="grid">
+    <a class="box card blog feat" href="https://www.justacademy.co/blog-detail/android-developer-interview-questions-for-freshers-and-experienced-developers" target="_blank" rel="noopener"><h3>Android Developer Interview Questions for Freshers and Experienced Developers</h3><p>The complete question bank behind this page.</p><span class="go">Read the blog</span></a>
+    <a class="box card blog" href="https://www.justacademy.co/blog-detail/android-app-development-career-guide-how-to-become-an-android-developer" target="_blank" rel="noopener"><h3>How to Become an Android Developer</h3><p>A career guide from first app to first job.</p><span class="go">Read the blog</span></a>
+    <a class="box card blog" href="https://www.justacademy.co/blog-detail/flutter-vs-native-android-vs-ios-which-mobile-development-path-should-you-choose" target="_blank" rel="noopener"><h3>Flutter vs Native Android vs iOS</h3><p>Which mobile path should you choose?</p><span class="go">Read the blog</span></a>
+    <a class="box card blog" href="https://www.justacademy.co/blog-detail/flutter-developer-roadmap-2026-skills-projects-career-path" target="_blank" rel="noopener"><h3>Flutter Developer Roadmap 2026</h3><p>Skills, projects and career path.</p><span class="go">Read the blog</span></a>
+    <a class="box card blog" href="https://www.justacademy.co/blog-detail/react-native-developer-roadmap-2026-skills-projects-and-career-guide" target="_blank" rel="noopener"><h3>React Native Developer Roadmap 2026</h3><p>Skills, projects and a career guide.</p><span class="go">Read the blog</span></a>
+  </div>
+
+  <div class="banner box">
+    <h2>Your next offer starts with one good answer.</h2>
+    <a class="btn alt" href="https://www.justacademy.co/course-detail/mumbai/android-app-development-in-mumbai" target="_blank" rel="noopener">Explore the Android course</a>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="foot">
+      <div><h3>Interview Arcade</h3><p>Android interview prep for freshers and experienced developers.</p></div>
+      <div><h3>Courses</h3>
+        <a href="https://www.justacademy.co/course-detail/mumbai/android-app-development-in-mumbai" target="_blank" rel="noopener">Android App Development</a>
+        <a href="https://www.justacademy.co/course-detail/mumbai/ios-training-in-mumbai" target="_blank" rel="noopener">iOS Training</a>
+        <a href="https://www.justacademy.co/course-detail/mumbai/flutter-training-in-mumbai" target="_blank" rel="noopener">Flutter Training</a>
+        <a href="https://www.justacademy.co/course-detail/mumbai/react-native-training-in-mumbai" target="_blank" rel="noopener">React Native Training</a></div>
+      <div><h3>Blogs</h3>
+        <a href="https://www.justacademy.co/blog-detail/android-developer-interview-questions-for-freshers-and-experienced-developers" target="_blank" rel="noopener">Android Interview Questions</a>
+        <a href="https://www.justacademy.co/blog-detail/android-app-development-career-guide-how-to-become-an-android-developer" target="_blank" rel="noopener">Android Career Guide</a>
+        <a href="https://www.justacademy.co/blog-detail/flutter-vs-native-android-vs-ios-which-mobile-development-path-should-you-choose" target="_blank" rel="noopener">Flutter vs Native</a>
+        <a href="https://www.justacademy.co/blog-detail/flutter-developer-roadmap-2026-skills-projects-career-path" target="_blank" rel="noopener">Flutter Roadmap 2026</a>
+        <a href="https://www.justacademy.co/blog-detail/react-native-developer-roadmap-2026-skills-projects-and-career-guide" target="_blank" rel="noopener">React Native Roadmap 2026</a></div>
+    </div>
+    <p class="copy">Learning resources by <a style="display:inline;text-decoration:underline" href="https://www.justacademy.co" target="_blank" rel="noopener">JustAcademy</a>. Built with plain HTML and CSS.</p>
+  </div>
+</footer>
+
+<script>
+const cards=document.querySelectorAll('.flip');
+cards.forEach(c=>c.addEventListener('click',()=>c.setAttribute('aria-pressed',c.getAttribute('aria-pressed')!=='true')));
+document.querySelectorAll('.tabs button').forEach(b=>b.addEventListener('click',()=>{
+  document.querySelectorAll('.tabs button').forEach(x=>x.setAttribute('aria-pressed',x===b));
+  cards.forEach(c=>{c.hidden=b.dataset.level!=='all'&&c.dataset.level!==b.dataset.level;c.setAttribute('aria-pressed','false')});
+}));
+</script>
+</body>
+</html>
